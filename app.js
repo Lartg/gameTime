@@ -89,6 +89,7 @@ sequelize.authenticate()
    console.error('Unable to connect to the database:', err);
  });
 
+ require('./controllers/games')(app, models);
 require('./controllers/auth')(app, models);
 
 

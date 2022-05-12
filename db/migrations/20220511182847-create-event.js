@@ -17,6 +17,26 @@ module.exports = {
       players: {
         type: Sequelize.INTEGER
       },
+      UserId: {
+        allowNull: false,
+        type: Sequelize.BIGINT,
+        unique: false,
+        references: { // Explicitly tells Sequelize to create a foreign key relation with `Users`.`id`
+          model: 'Users',
+          key: 'id',
+        },
+        field: 'UserId', // Explicitly tells Sequelize the database field name
+      },
+      GameId: {
+        allowNull: false,
+        type: Sequelize.BIGINT,
+        unique: false,
+        references: { // Explicitly tells Sequelize to create a foreign key relation with `Users`.`id`
+          model: 'Games',
+          key: 'id',
+        },
+        field: 'GameId', // Explicitly tells Sequelize the database field name
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,0 +1,17 @@
+<form action="/games/{{game}}/event/new" method="post">
+<div class="form-group">
+  <label for="title">Title</label>
+  <input name="title" class="form-control" placeholder="Title" />
+</div>
+<div class="form-group">
+  <label for="desc">Description</label>
+  <input name="desc" class="form-control" placeholder="Description">
+</div>
+<div class="form-group">
+  <label for="players">Number of Players</label>
+  <input name="players" type="number "class="form-control" min="1" max="20"/>
+</div>
+<div class="text-right">
+    <button type="submit" class="btn btn-primary" name="button">Save</button>
+  </div>
+</form>

@@ -7,12 +7,13 @@ app.get('/', (req, res) => {
 })
 
 app.get('/games/:id', (req, res) => {
+  const game = req.params.id
   models.Event.findAll({
    where: {
-    GameId: req.params.id
+    GameId: game
    }
   }).then(events => {
-    res.render('events-index', {events: events, game: req.params.id})
+    res.render('events-index', {events: events, game: game})
   }).catch((err) => {
     console.log(err)
   });
@@ -40,16 +41,16 @@ app.get('/games/:id', (req, res) => {
     res.render('event-form', {game: req.params.id})
   })
   app.post('/games/:id/event/new', (req, res) => {
-    const gameId = req.params.id
-    models.Event.create(
-      title = req.body.title,
-      desc = req.body.desc,
-      players = req.body.players,
-      UserId = req.user.id,
-      GameId = gameId
-      ).then(
-      res.redirect(`/games/${gameId}`)
-    ).catch((err) => {
+    models.Event.create({
+      title: req.body.title,
+      desc: req.body.desc,
+      players: req.body.players,
+      UserId: req.user.id,
+      GameId: req.params.id
+    }).then(event => {
+      console.log(typeof(event.GameId))
+      res.redirect(`/games/${event.GameId}`)
+    }).catch((err) => {
       console.log(err)
     });
   })
@@ -60,6 +61,7 @@ app.get('/games/:id', (req, res) => {
 
 
 // DESTROY
+  //
 
 
 

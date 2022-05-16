@@ -12,11 +12,14 @@
           <div class="card text-center container">
             <div class="row">
               <div class="card-body col-md-8">
-                <h5 class="card-title fw-bold">{{this.title}}</h5>
+                <a href="/event/{{this.id}}"><h5 class="card-title fw-bold">{{this.title}}</h5></a>
                 <p class="fw-bolder">Description:</p>
                 <p class="card-text">{{this.description}}</p>
                 <p class="fw-bolder">Number of players:</p>
                 <p class="card-text">{{this.players}}</p>
+                <p class="fw-bolder">Seats remaining:</p>
+                <p class="card-text">{{this.seats}}</p>
+                <a class="btn-primary" href="/event/addPlayer/{{this.id}}">Join Event</a>
               </div>
             </div>
           </div>

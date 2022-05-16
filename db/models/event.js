@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     desc: DataTypes.STRING,
     players: DataTypes.INTEGER,
+    seats: DataTypes.INTEGER,
     UserId: DataTypes.BIGINT,
     GameId: DataTypes.BIGINT
   }, {

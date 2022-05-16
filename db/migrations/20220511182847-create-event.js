@@ -17,6 +17,9 @@ module.exports = {
       players: {
         type: Sequelize.INTEGER
       },
+      seats: {
+        type: Sequelize.INTEGER
+      },
       UserId: {
         allowNull: true,
         type: Sequelize.BIGINT,

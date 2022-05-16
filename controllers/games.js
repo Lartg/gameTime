@@ -18,6 +18,13 @@ app.get('/games/:id', (req, res) => {
     console.log(err)
   });
 })
+  //event
+  app.get('/event/:id', (req, res) => {
+    models.Event.findByPk(req.params.id).then(event => {
+      res.render('view-event', {event: event})
+    })
+    
+  })
 
 // CREATE
 
@@ -45,10 +52,10 @@ app.get('/games/:id', (req, res) => {
       title: req.body.title,
       desc: req.body.desc,
       players: req.body.players,
+      seats: req.body.players,
       UserId: req.user.id,
       GameId: req.params.id
     }).then(event => {
-      console.log(typeof(event.GameId))
       res.redirect(`/games/${event.GameId}`)
     }).catch((err) => {
       console.log(err)
@@ -79,6 +86,15 @@ app.get('/games/:id', (req, res) => {
     });
   })
 
-
+  // Join Event
+  app.get('/event/addPlayer/:id', (req, res) => {
+    models.Event.findByPk(req.params.id).then(event => {
+      seats = event.seats
+      event.set({seats: seats-1}).save().then(
+        res.redirect(`/event/${req.params.id}`)
+      )
+    }).catch((err) => {
+      console.log(err);
+    });
+  })
 }
-

@@ -17,6 +17,11 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      EventId: {
+        allowNull: true,
+        type: Sequelize.BIGINT,
+
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

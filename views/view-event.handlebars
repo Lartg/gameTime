@@ -1,1 +1,25 @@
-<h1>{{event.seats}}</h1>
+<div class="card text-center container">
+  <div class="row">
+    <div class="card-body col-md-8">
+      <h5 class="card-title fw-bold">{{event.title}}</h5>
+      <p class="fw-bolder">Description:</p>
+      <p class="card-text">{{event.description}}</p>
+      <p class="fw-bolder">Number of players:</p>
+      <p class="card-text">{{event.players}}</p>
+      <p class="fw-bolder">Seats remaining:</p>
+      <p class="card-text">{{event.seats}}</p>
+      <a class="btn-primary" href="/event/addPlayer/{{event.id}}">Join Event</a>
+    </div>
+  </div>
+</div>
+<div class="card text-center container">
+  <div class="row">
+    <div class="card-body col-md-8">
+      <h5 class="card-title fw-bold">Players:</h5>
+      {{#each players}}
+      <p class="fw-bolder">User:{{this.username}}</p>
+      <p class="card-text">Email:{{this.email}}</p>
+      {{/each}}
+    </div>
+  </div>
+</div>

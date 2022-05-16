@@ -20,9 +20,14 @@ app.get('/games/:id', (req, res) => {
 })
   //event
   app.get('/event/:id', (req, res) => {
+    models.User.findAll({
+      where: {
+        EventId: req.params.id
+      }
+    }).then(players => {
     models.Event.findByPk(req.params.id).then(event => {
-      res.render('view-event', {event: event})
-    })
+      res.render('view-event', {event: event, players: players})
+    })})
     
   })
 
@@ -88,12 +93,16 @@ app.get('/games/:id', (req, res) => {
 
   // Join Event
   app.get('/event/addPlayer/:id', (req, res) => {
+    const userId = req.user.id
+    models.User.findByPk(userId).then(user => {
+      user.set({EventId: req.params.id}).save()
+    }).then(
     models.Event.findByPk(req.params.id).then(event => {
       seats = event.seats
       event.set({seats: seats-1}).save().then(
         res.redirect(`/event/${req.params.id}`)
       )
-    }).catch((err) => {
+    })).catch((err) => {
       console.log(err);
     });
   })

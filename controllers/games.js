@@ -56,13 +56,28 @@ app.get('/games/:id', (req, res) => {
   })
 
 
-
-
-
-
 // DESTROY
-  //
+  // GAMES
+  app.delete('/games/delete/:id', (req, res) => {
+    models.Game.findByPk(req.params.id).then(game => {
+      game.destroy();
+      res.redirect(`/`);
+    }).catch((err) => {
+      console.log(err);
+    });
+  })
 
+
+
+  // EVENTS
+  app.get('/event/delete/:id', (req, res) => {
+    models.Event.findByPk(req.params.id).then(event => {
+      event.destroy();
+      res.redirect(`/`);
+    }).catch((err) => {
+      console.log(err);
+    });
+  })
 
 
 }
